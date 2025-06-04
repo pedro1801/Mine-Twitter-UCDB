@@ -67,8 +67,19 @@ const Aplicacao = {
      */
     atualizarMenuNavegacao(rotaAtual) {
         const nav = document.getElementById('nav-menu');
-        
-        if (Autenticacao.estaAutenticado() && rotaAtual !== '#login' && rotaAtual !== '#register') {
+        if (Autenticacao.estaAutenticado() && rotaAtual == '#profile')
+        {
+            nav.innerHTML = `
+                <a href="#home">Voltar</a>
+                <a href="#" id="logout-link">Sair</a>
+            `;
+
+            document.getElementById('logout-link').addEventListener('click', (e) => {
+                e.preventDefault();
+                Autenticacao.sair();
+            });
+        }
+        else if (Autenticacao.estaAutenticado() && rotaAtual !== '#login' && rotaAtual !== '#register') {
             nav.innerHTML = `
                 <a href="#profile">Perfil</a>
                 <a href="#" id="logout-link">Sair</a>

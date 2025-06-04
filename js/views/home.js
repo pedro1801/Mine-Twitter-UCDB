@@ -85,11 +85,10 @@ const VisualizacaoInicial = {
         const usuarioAtual = Autenticacao.obterUsuario();
         const podeExcluir = usuarioAtual && usuarioAtual.id === postagem.userId;
         const dataFormatada = Postagens.formatarData(postagem.createdAt);
-
         return `
-            <div class="post-item" data-id="${postagem.id}">
+            <div class="post-item" data-id="${postagem._id}">
                 <div class="post-header">
-                    <span class="post-username">${postagem.user.username}</span>
+                    <span class="post-username">${postagem.author.username}</span>
                     <span class="post-date">${dataFormatada}</span>
                 </div>
                 <div class="post-content">${postagem.content}</div>

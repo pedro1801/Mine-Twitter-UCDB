@@ -38,10 +38,10 @@ const VisualizacaoPerfil = {
      */
     async carregarDadosPerfil() {
         const resultado = await ControladorPerfil.gerenciarObterPerfil();
-        
         if (resultado.sucesso) {
-            document.getElementById('nome-usuario').value = resultado.dados.user.username;
-            document.getElementById('email').value = resultado.dados.user.email;
+            console.log(resultado.dados.username)
+            document.getElementById('nome-usuario').value = resultado.dados.username;
+            document.getElementById('email').value = resultado.dados.email;
         } else {
             const mensagemErro = document.getElementById('mensagem-erro');
             mensagemErro.textContent = resultado.erro;
@@ -109,16 +109,15 @@ const VisualizacaoPerfil = {
      */
     criarHtmlPostagem(postagem) {
         const dataFormatada = Postagens.formatarData(postagem.createdAt);
-
         return `
-            <div class="post-item" data-id="${postagem.id}">
+            <div class="post-item" data-id="${postagem._id}">
                 <div class="post-header">
-                    <span class="post-username">${postagem.user.username}</span>
+                    <span class="post-username">${postagem.author.username}</span>
                     <span class="post-date">${dataFormatada}</span>
                 </div>
                 <div class="post-content">${postagem.content}</div>
                 <div class="post-actions">
-                    <button class="btn-excluir" data-id="${postagem.id}">Excluir</button>
+                    <button class="btn-excluir" data-id="${postagem._id}">Excluir</button>
                 </div>
             </div>
         `;
