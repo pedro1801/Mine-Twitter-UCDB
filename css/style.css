@@ -1,0 +1,227 @@
+:root {
+    --primary-color: #1da1f2;
+    --secondary-color: #14171a;
+    --background-color: #ffffff;
+    --border-color: #e1e8ed;
+    --text-color: #14171a;
+    --text-secondary: #657786;
+    --error-color: #e0245e;
+    --success-color: #17bf63;
+    --header-height: 50px;
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+/* Header */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: var(--header-height);
+    background-color: var(--background-color);
+    border-bottom: 1px solid var(--border-color);
+    z-index: 1000;
+}
+
+.header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+}
+
+.header h1 {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+/* Centraliza o título quando não há menu (páginas de login/registro) */
+.header .container:has(#nav-menu:empty) {
+    justify-content: center;
+}
+
+/* Main Content */
+#main-content {
+    padding-top: calc(var(--header-height) + 20px);
+}
+
+/* Forms */
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-control {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    transition: border-color 0.2s;
+}
+
+.form-control:focus {
+    border-color: var(--primary-color);
+}
+
+.btn {
+    padding: 0.75rem 1.5rem;
+    border-radius: 9999px;
+    font-weight: bold;
+    transition: background-color 0.2s;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #1991da;
+}
+
+/* Auth Pages */
+.auth-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 0;
+}
+
+.auth-form {
+    width: 100%;
+    max-width: 400px;
+    padding: 2rem;
+    background-color: var(--background-color);
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Posts */
+.post-form {
+    padding: 1.5rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    background-color: var(--background-color);
+}
+
+.post-textarea {
+    width: 100%;
+    min-height: 100px;
+    padding: 0.75rem;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    resize: none;
+    margin-bottom: 1rem;
+}
+
+.post-item {
+    padding: 1.5rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    background-color: var(--background-color);
+}
+
+.post-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.post-username {
+    font-weight: bold;
+    margin-right: 0.5rem;
+}
+
+.post-date {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+}
+
+.post-content {
+    margin-bottom: 1rem;
+    line-height: 1.5;
+}
+
+.post-actions {
+    display: flex;
+    gap: 1rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid var(--border-color);
+}
+
+/* Messages */
+.message {
+    padding: 0.75rem;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+}
+
+.message-error {
+    background-color: #fde8ef;
+    color: var(--error-color);
+}
+
+.message-success {
+    background-color: #e3f9ec;
+    color: var(--success-color);
+}
+
+/* Profile */
+.profile-container {
+    padding-top: 1rem;
+}
+
+.profile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.profile-info {
+    padding: 1.5rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    background-color: var(--background-color);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .container {
+        padding: 0 10px;
+    }
+    
+    .auth-form {
+        box-shadow: none;
+        padding: 1rem;
+    }
+
+    .post-form,
+    .post-item,
+    .profile-info {
+        border-radius: 0;
+        border-left: none;
+        border-right: none;
+    }
+}
+
+/* Fallback para navegadores que não suportam :has */
+@supports not (selector(:has(*))) {
+    .auth-page .header .container {
+        justify-content: center;
+    }
+}
